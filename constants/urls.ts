@@ -1,0 +1,1 @@
+export const productsApi = process.env.PRODUCTS_API as string;
