@@ -1,23 +1,24 @@
-"use client";
-import { ReactNode } from "react";
+'use client';
+import { ReactNode } from 'react';
 
-import { useBoundStore } from "@/store";
-import Close from "../icons/Close";
+import { useBoundStore } from '@/store';
+import Close from '../icons/Close';
 
 interface IProps {
   children: ReactNode;
 }
 
 export default function Drawer({ children }: IProps) {
-  const toggle = useBoundStore.use.toggle();
-  const isOpen = useBoundStore.use.isOpen();
+  const toggle = useBoundStore.use.toggleDrawer();
+  const isOpen = useBoundStore.use.drawerIsOpen();
 
   return (
     <div className="relative">
       <div
         className={`fixed top-0 right-0 h-full w-80 bg-gray-900 text-white transition duration-700 ease-in-out transform z-50 shadow-2xl ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+          isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
+        role="dialog"
       >
         <aside className="h-full">
           <header className="flex justify-end p-4 h-14">
