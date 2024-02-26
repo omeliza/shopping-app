@@ -1,9 +1,9 @@
-"use client";
-import { getData } from "@/app/action";
-import { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
-import Card from "../Card/Card";
-import { IProduct } from "@/store/types";
+'use client';
+import { getData } from '@/app/action';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import Card from '../Card/Card';
+import { IProduct } from '@/store/types';
 let page = 2;
 
 export default function ShowMore() {
@@ -13,7 +13,7 @@ export default function ShowMore() {
   useEffect(() => {
     if (inView) {
       getData(page).then((res) => {
-        if (res && res.products.length) {
+        if (res && typeof res !== 'string' && res?.products) {
           setData((prev) => [...prev, ...res.products]);
           page++;
         }

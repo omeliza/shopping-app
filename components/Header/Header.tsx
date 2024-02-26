@@ -1,16 +1,16 @@
-"use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import { useBoundStore } from "@/store";
-import Basket from "../icons/Basket";
+import { useBoundStore } from '@/store';
+import Basket from '../icons/Basket';
 
 export default function Header() {
-  const toggle = useBoundStore.use.toggle();
+  const toggle = useBoundStore.use.toggleDrawer();
   const quantity = useBoundStore.use.totalItems();
   const pathname = usePathname();
 
-  const isCheckout = pathname === "/checkout";
+  const isCheckout = pathname === '/checkout';
 
   return (
     <header className="bg-gray-900 text-white py-4 flex items-center justify-between h-14 sticky top-0 z-10">
