@@ -1,23 +1,24 @@
-"use client";
-import { useBoundStore } from "@/store";
-import CartItem from "../CartItem/CartItem";
-import Link from "next/link";
+'use client';
+import { useBoundStore } from '@/store';
+import CartItem from '../CartItem/CartItem';
+import Link from 'next/link';
 
 export default function Cart() {
   const cart = useBoundStore.use.cart();
-  const toggleDrawer = useBoundStore.use.toggle();
+  const toggleDrawer = useBoundStore.use.toggleDrawer();
 
   let total = 0;
   if (cart) {
     total = cart.reduce(
-      (acc, product) => acc + product.price * (product.quantity as number),
+      (acc, product) =>
+        acc + product.price * ((product.quantity as number) || 1),
       0
     );
   }
   return (
     <section>
       <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
-      {cart.length > 0 && (
+      {cart?.length > 0 && (
         <ul>
           {cart.map((product) => (
             <CartItem key={product.id} product={product} />

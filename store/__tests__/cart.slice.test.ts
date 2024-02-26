@@ -2,7 +2,7 @@ import { createCartSlice } from '@/store/cart.slice';
 import { ICartState } from '@/store/types';
 import { renderHook } from '@testing-library/react';
 import { create } from 'zustand';
-import { product1, product2 } from '../__mocks__/products';
+import { product1, product2 } from '@/__mocks__/products';
 
 const useTestStore = create<ICartState>()((...a) => ({
   ...createCartSlice(...a),
