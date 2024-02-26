@@ -1,5 +1,5 @@
-import { StateCreator } from "zustand";
-import { ICartState } from "./types";
+import { StateCreator } from 'zustand';
+import { ICartState } from './types';
 
 export const createCartSlice: StateCreator<ICartState> = (set, get) => ({
   cart: [],
@@ -32,11 +32,24 @@ export const createCartSlice: StateCreator<ICartState> = (set, get) => ({
   },
 
   removeFromCart: (product) =>
-    set((state) => ({
-      cart: state.cart.filter((item) => item.id !== product.id),
-      totalItems: state.totalItems - 1,
-      totalPrice: state.totalPrice - product.price,
-    })),
+    set((state) => {
+      const existingProductIndex = state.cart.findIndex(
+        (item) => item.id === product.id
+      );
+      if (existingProductIndex === -1) {
+        return state;
+      }
+
+      const existingProduct = state.cart[existingProductIndex];
+      const updatedCart = state.cart.filter((item) => item.id !== product.id);
+      const decrementCount = existingProduct.quantity || 1; // Assuming 'quantity' is always defined and > 0
+
+      return {
+        cart: updatedCart,
+        totalItems: state.totalItems - decrementCount,
+        totalPrice: state.totalPrice - product.price * decrementCount,
+      };
+    }),
 
   clearCart: () =>
     set(() => ({

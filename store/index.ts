@@ -1,19 +1,19 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
-import { ICartState, IDrawerState } from "./types";
-import { createDrawerSlice } from "./drawer.slice";
-import { createSelectors } from "./selectors";
-import { createCartSlice } from "./cart.slice";
-import { persist } from "zustand/middleware";
+import { ICartState, IUIState } from './types';
+import { createSelectors } from './selectors';
+import { createCartSlice } from './cart.slice';
+import { persist } from 'zustand/middleware';
+import { createUISlice } from './ui.slice';
 
-const useBaseBoundStore = create<IDrawerState & ICartState>()(
+const useBaseBoundStore = create<IUIState & ICartState>()(
   persist(
     (...a) => ({
-      ...createDrawerSlice(...a),
+      ...createUISlice(...a),
       ...createCartSlice(...a),
     }),
     {
-      name: "storage",
+      name: 'storage',
     }
   )
 );

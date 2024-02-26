@@ -13,9 +13,14 @@ export interface IProduct {
   quantity?: number;
 }
 
-export interface IDrawerState {
-  isOpen: boolean;
-  toggle: () => void;
+export interface IUIState {
+  drawerIsOpen: boolean;
+  loginModalIsOpen: boolean;
+  registerModalIsOpen: boolean;
+
+  toggleDrawer: () => void;
+  toggleLoginModal: () => void;
+  toggleRegisterModal: () => void;
 }
 
 export interface ICartState {
